@@ -1,0 +1,19 @@
+import pandas as pd
+
+# Datos de Recursos Humanos
+data_rrhh = {
+    'EmpleadosTotales': [100, 150],
+    'EmpleadosSalieron': [5, 10],
+    'DiasParaContratar': [[20, 25, 30], [15, 20, 25]]
+}
+df_rrhh = pd.DataFrame(data_rrhh)
+
+# Calcular la Tasa de Rotación
+df_rrhh['TasaRotacion'] = (df_rrhh['EmpleadosSalieron'] / df_rrhh['EmpleadosTotales']) * 100
+
+# Calcular el Promedio de Días para Contratar
+df_rrhh['PromedioDiasContratar'] = df_rrhh['DiasParaContratar'].apply(lambda x: sum(x) / len(x))
+
+# Imprimir resultados
+print("Resultados de Recursos Humanos:")
+print(df_rrhh[['EmpleadosTotales', 'EmpleadosSalieron', 'TasaRotacion', 'PromedioDiasContratar']])

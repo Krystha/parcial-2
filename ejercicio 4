@@ -1,0 +1,33 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+# Dataset
+data = {
+    'ClienteID': range(1, 11),
+    'Edad': [25, 45, 35, 23, 50, 31, 42, 36, 29, 40],
+    'IngresoMensual': [2500, 4000, 3200, 2200, 5000, 3100, 4200, 3500, 3000, 3700],
+    'RespondioCampaña': [1, 0, 1, 1, 0, 1, 0, 1, 1, 0]
+}
+df_marketing = pd.DataFrame(data)
+
+# Dividir en entrenamiento y prueba
+X = df_marketing[['Edad', 'IngresoMensual']]
+y = df_marketing['RespondioCampaña']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Entrenar modelo
+modelo = DecisionTreeClassifier()
+modelo.fit(X_train, y_train)
+
+# Evaluar modelo
+predicciones = modelo.predict(X_test)
+accuracy = accuracy_score(y_test, predicciones)
+
+# Imprimir resultados
+print("Datos de prueba:")
+print(X_test)
+print("\nPredicciones:")
+print(predicciones)
+print(f'\nExactitud del modelo: {accuracy}')

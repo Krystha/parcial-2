@@ -1,0 +1,22 @@
+# Calcular la Tasa de Respuesta a Campañas y el ROI de Campañas
+import pandas as pd
+
+# Datos de la campaña
+data_campaña = {
+    'CampañaID': [1, 2, 3],
+    'ContactosTotales': [1000, 800, 1200],
+    'Respuestas': [80, 50, 100],
+    'GananciaNeta': [10000, 8000, 15000],
+    'CostoCampaña': [2500, 3000, 4000]
+}
+df_campaña = pd.DataFrame(data_campaña)
+
+# Calcular la Tasa de Respuesta a Campañas
+df_campaña['TasaRespuesta'] = (df_campaña['Respuestas'] / df_campaña['ContactosTotales']) * 100
+
+# Calcular el ROI de Campañas
+df_campaña['ROI'] = ((df_campaña['GananciaNeta'] - df_campaña['CostoCampaña']) / df_campaña['CostoCampaña']) * 100
+
+# Imprimir resultados
+print("Resultados de la Campaña:")
+print(df_campaña[['CampañaID', 'TasaRespuesta', 'ROI']])

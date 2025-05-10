@@ -1,0 +1,30 @@
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+# Dataset
+data = {
+    'ClienteID': range(1, 11),
+    'Edad': [25, 45, 35, 23, 50, 31, 42, 36, 29, 40],
+    'IngresoMensual': [2500, 4000, 3200, 2200, 5000, 3100, 4200, 3500, 3000, 3700],
+    'MontoVenta': [200, 300, 250, 150, 500, 230, 310, 280, 220, 290]
+}
+df_regresion = pd.DataFrame(data)
+
+# Entrenar modelo de regresión
+X = df_regresion[['Edad', 'IngresoMensual']]
+y = df_regresion['MontoVenta']
+modelo_regresion = LinearRegression()
+modelo_regresion.fit(X, y)
+
+# Predicción
+nuevos_datos = pd.DataFrame({'Edad': [30, 50], 'IngresoMensual': [3200, 4500]})
+predicciones = modelo_regresion.predict(nuevos_datos)
+
+# Imprimir resultados
+print("Datos originales:")
+print(df_regresion)
+print("\nNuevos datos para predicción:")
+print(nuevos_datos)
+print("\nPredicciones:")
+for i, pred in enumerate(predicciones):
+    print(f"Cliente {i + 1}: ${pred:.2f}")

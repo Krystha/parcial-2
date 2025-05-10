@@ -1,0 +1,18 @@
+import pandas as pd
+import numpy as np
+
+# Dataset
+data = {
+    'VentaID': range(1, 11),
+    'MontoVenta': [200, 250, 300, 150, 5000, 275, 290, 310, 280, 260]
+}
+df_ventas = pd.DataFrame(data)
+
+# Calcular z-score
+df_ventas['z_score'] = (df_ventas['MontoVenta'] - df_ventas['MontoVenta'].mean()) / df_ventas['MontoVenta'].std()
+
+# Identificar anomalías
+df_ventas['EsAnomalia'] = df_ventas['z_score'].apply(lambda x: x > 3 or x < -3)
+
+# Imprimir resultados
+print(df_ventas)

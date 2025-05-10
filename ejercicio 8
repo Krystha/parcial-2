@@ -1,0 +1,19 @@
+import pandas as pd
+
+# Datos financieros
+data_finanzas = {
+    'IngresosTotales': [100000, 500000],
+    'CostosVentas': [60000, 300000],
+    'CostosOperativos': [50000, 200000]
+}
+df_finanzas = pd.DataFrame(data_finanzas)
+
+# Calcular el Margen Bruto
+df_finanzas['MargenBruto'] = ((df_finanzas['IngresosTotales'] - df_finanzas['CostosVentas']) / df_finanzas['IngresosTotales']) * 100
+
+# Calcular el EBITDA
+df_finanzas['EBITDA'] = df_finanzas['IngresosTotales'] - df_finanzas['CostosOperativos']
+
+# Imprimir resultados
+print("Resultados Financieros:")
+print(df_finanzas[['IngresosTotales', 'CostosVentas', 'CostosOperativos', 'MargenBruto', 'EBITDA']])

@@ -1,0 +1,24 @@
+import pandas as pd
+# Dataset de compras
+data = {
+    'ProveedorID': [1, 2, 3, 4, 5],
+    'Costo': [5000, 4000, 3000, 2000, 6000],
+    'PedidosMensuales': [10, 15, 20, 25, 30]
+}
+df_compras = pd.DataFrame(data)
+
+# Calcular el costo promedio por proveedor
+try:
+    total_costos = df_compras['Costo'].sum()
+    numero_proveedores = df_compras['ProveedorID'].nunique()
+    costo_promedio_por_proveedor = total_costos / numero_proveedores
+    print(f"Costo Promedio por Proveedor: ${costo_promedio_por_proveedor:.2f}")
+except Exception as e:
+    print(f"Error al calcular el costo promedio por proveedor: {e}")
+
+# Calcular el número de pedidos mensuales
+try:
+    numero_pedidos_mensuales = df_compras['PedidosMensuales'].sum()
+    print(f"Número de Pedidos Mensuales: {numero_pedidos_mensuales}")
+except Exception as e:
+    print(f"Error al calcular el número de pedidos mensuales: {e}")
